@@ -1,13 +1,13 @@
-<resource xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="7e7a965f-d182-456f-aff1-b967231d23e6" version="8">
+<resource xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="7e7a965f-d182-456f-aff1-b967231d23e6" version="29">
     <name>HRSystem</name>
     <metadata>
-        <modifyTimestamp>2022-06-24T18:35:25.337+02:00</modifyTimestamp>
+        <modifyTimestamp>2022-06-26T19:30:50.136+02:00</modifyTimestamp>
         <modifierRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
         <modifyChannel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</modifyChannel>
     </metadata>
-    <operationExecution id="1">
+    <operationExecution id="13">
         <recordType>simple</recordType>
-        <timestamp>2022-06-24T18:34:00.692+02:00</timestamp>
+        <timestamp>2022-06-26T19:26:07.515+02:00</timestamp>
         <operation>
             <objectDelta>
                 <t:changeType>modify</t:changeType>
@@ -17,7 +17,7 @@
                 <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
                 <status>success</status>
                 <importance>normal</importance>
-                <token>1000000000000008930</token>
+                <token>1000000000000032141</token>
             </executionResult>
             <objectName>HRSystem</objectName>
         </operation>
@@ -25,9 +25,9 @@
         <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
         <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
     </operationExecution>
-    <operationExecution id="4">
+    <operationExecution id="14">
         <recordType>simple</recordType>
-        <timestamp>2022-06-24T18:34:42.086+02:00</timestamp>
+        <timestamp>2022-06-26T19:28:27.748+02:00</timestamp>
         <operation>
             <objectDelta>
                 <t:changeType>modify</t:changeType>
@@ -37,7 +37,7 @@
                 <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
                 <status>success</status>
                 <importance>normal</importance>
-                <token>1000000000000009171</token>
+                <token>1000000000000032277</token>
             </executionResult>
             <objectName>HRSystem</objectName>
         </operation>
@@ -45,9 +45,9 @@
         <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
         <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
     </operationExecution>
-    <operationExecution id="5">
+    <operationExecution id="15">
         <recordType>simple</recordType>
-        <timestamp>2022-06-24T18:35:25.789+02:00</timestamp>
+        <timestamp>2022-06-26T19:28:50.158+02:00</timestamp>
         <operation>
             <objectDelta>
                 <t:changeType>modify</t:changeType>
@@ -57,7 +57,47 @@
                 <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
                 <status>success</status>
                 <importance>normal</importance>
-                <token>1000000000000009378</token>
+                <token>1000000000000032360</token>
+            </executionResult>
+            <objectName>HRSystem</objectName>
+        </operation>
+        <status>success</status>
+        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
+    </operationExecution>
+    <operationExecution id="16">
+        <recordType>simple</recordType>
+        <timestamp>2022-06-26T19:29:41.690+02:00</timestamp>
+        <operation>
+            <objectDelta>
+                <t:changeType>modify</t:changeType>
+                <t:objectType>c:ResourceType</t:objectType>
+            </objectDelta>
+            <executionResult>
+                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
+                <status>success</status>
+                <importance>normal</importance>
+                <token>1000000000000032452</token>
+            </executionResult>
+            <objectName>HRSystem</objectName>
+        </operation>
+        <status>success</status>
+        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
+    </operationExecution>
+    <operationExecution id="17">
+        <recordType>simple</recordType>
+        <timestamp>2022-06-26T19:30:50.572+02:00</timestamp>
+        <operation>
+            <objectDelta>
+                <t:changeType>modify</t:changeType>
+                <t:objectType>c:ResourceType</t:objectType>
+            </objectDelta>
+            <executionResult>
+                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
+                <status>success</status>
+                <importance>normal</importance>
+                <token>1000000000000032549</token>
             </executionResult>
             <objectName>HRSystem</objectName>
         </operation>
@@ -184,8 +224,34 @@
     <schemaHandling>
         <objectType id="3">
             <kind>account</kind>
+            <displayName>Email Lowercased</displayName>
             <default>true</default>
             <objectClass>ri:AccountObjectClass</objectClass>
+            <attribute id="6">
+                <ref>ri:email</ref>
+                <displayName>email lowercased</displayName>
+                <tolerant>true</tolerant>
+                <exclusiveStrong>false</exclusiveStrong>
+                <inbound id="7">
+                    <name>emaillowercasemapping</name>
+                    <authoritative>false</authoritative>
+                    <exclusive>false</exclusive>
+                    <strength>normal</strength>
+                    <source>
+                        <path>email</path>
+                    </source>
+                    <expression>
+                        <script>
+                            <code>
+        email.toUpperCase()
+    </code>
+                        </script>
+                    </expression>
+                    <target>
+                        <path>email</path>
+                    </target>
+                </inbound>
+            </attribute>
         </objectType>
     </schemaHandling>
     <capabilities>
@@ -214,9 +280,34 @@
     </capabilities>
     <synchronization>
         <objectSynchronization>
+            <name>Regular Refresh</name>
+            <objectClass>ri:AccountObjectClass</objectClass>
             <kind>account</kind>
+            <focusType>c:UserType</focusType>
             <enabled>true</enabled>
-            <reconcile>false</reconcile>
+            <reaction>
+                <name>RRlinked</name>
+                <situation>linked</situation>
+                <synchronize>true</synchronize>
+            </reaction>
+            <reaction>
+                <name>RRunlinked</name>
+                <situation>unlinked</situation>
+                <synchronize>true</synchronize>
+                <action>
+                    <name>RRAlink</name>
+                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#link</handlerUri>
+                </action>
+            </reaction>
+            <reaction>
+                <name>RRunmatched</name>
+                <situation>unmatched</situation>
+                <synchronize>true</synchronize>
+                <action>
+                    <name>RRAaddFocus</name>
+                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>
+                </action>
+            </reaction>
         </objectSynchronization>
     </synchronization>
 </resource>
