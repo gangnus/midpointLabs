@@ -1,50 +1,10 @@
-<resource xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="7e7a965f-d182-456f-aff1-b967231d23e6" version="29">
+<resource xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="7e7a965f-d182-456f-aff1-b967231d23e6" version="38">
     <name>HRSystem</name>
     <metadata>
-        <modifyTimestamp>2022-06-26T19:30:50.136+02:00</modifyTimestamp>
+        <modifyTimestamp>2022-06-26T21:38:11.009+02:00</modifyTimestamp>
         <modifierRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
         <modifyChannel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</modifyChannel>
     </metadata>
-    <operationExecution id="13">
-        <recordType>simple</recordType>
-        <timestamp>2022-06-26T19:26:07.515+02:00</timestamp>
-        <operation>
-            <objectDelta>
-                <t:changeType>modify</t:changeType>
-                <t:objectType>c:ResourceType</t:objectType>
-            </objectDelta>
-            <executionResult>
-                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
-                <status>success</status>
-                <importance>normal</importance>
-                <token>1000000000000032141</token>
-            </executionResult>
-            <objectName>HRSystem</objectName>
-        </operation>
-        <status>success</status>
-        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
-        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
-    </operationExecution>
-    <operationExecution id="14">
-        <recordType>simple</recordType>
-        <timestamp>2022-06-26T19:28:27.748+02:00</timestamp>
-        <operation>
-            <objectDelta>
-                <t:changeType>modify</t:changeType>
-                <t:objectType>c:ResourceType</t:objectType>
-            </objectDelta>
-            <executionResult>
-                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
-                <status>success</status>
-                <importance>normal</importance>
-                <token>1000000000000032277</token>
-            </executionResult>
-            <objectName>HRSystem</objectName>
-        </operation>
-        <status>success</status>
-        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
-        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
-    </operationExecution>
     <operationExecution id="15">
         <recordType>simple</recordType>
         <timestamp>2022-06-26T19:28:50.158+02:00</timestamp>
@@ -98,6 +58,46 @@
                 <status>success</status>
                 <importance>normal</importance>
                 <token>1000000000000032549</token>
+            </executionResult>
+            <objectName>HRSystem</objectName>
+        </operation>
+        <status>success</status>
+        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
+    </operationExecution>
+    <operationExecution id="18">
+        <recordType>simple</recordType>
+        <timestamp>2022-06-26T21:36:36.551+02:00</timestamp>
+        <operation>
+            <objectDelta>
+                <t:changeType>modify</t:changeType>
+                <t:objectType>c:ResourceType</t:objectType>
+            </objectDelta>
+            <executionResult>
+                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
+                <status>success</status>
+                <importance>normal</importance>
+                <token>1000000000000064768</token>
+            </executionResult>
+            <objectName>HRSystem</objectName>
+        </operation>
+        <status>success</status>
+        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
+    </operationExecution>
+    <operationExecution id="19">
+        <recordType>simple</recordType>
+        <timestamp>2022-06-26T21:38:11.285+02:00</timestamp>
+        <operation>
+            <objectDelta>
+                <t:changeType>modify</t:changeType>
+                <t:objectType>c:ResourceType</t:objectType>
+            </objectDelta>
+            <executionResult>
+                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
+                <status>success</status>
+                <importance>normal</importance>
+                <token>1000000000000065079</token>
             </executionResult>
             <objectName>HRSystem</objectName>
         </operation>
@@ -230,25 +230,24 @@
             <attribute id="6">
                 <ref>ri:email</ref>
                 <displayName>email lowercased</displayName>
+                <matchingRule xmlns:gen486="http://prism.evolveum.com/xml/ns/public/matching-rule-3">gen486:default</matchingRule>
                 <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
+                <fetchStrategy>explicit</fetchStrategy>
                 <inbound id="7">
                     <name>emaillowercasemapping</name>
-                    <authoritative>false</authoritative>
+                    <authoritative>true</authoritative>
                     <exclusive>false</exclusive>
                     <strength>normal</strength>
-                    <source>
-                        <path>email</path>
-                    </source>
                     <expression>
                         <script>
                             <code>
-        email.toUpperCase()
+        input.toLowerCase()
     </code>
                         </script>
                     </expression>
                     <target>
-                        <path>email</path>
+                        <path>$projection/attributes/email</path>
                     </target>
                 </inbound>
             </attribute>
