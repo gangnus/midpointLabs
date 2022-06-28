@@ -229,25 +229,69 @@
             <objectClass>ri:AccountObjectClass</objectClass>
             <attribute id="6">
                 <ref>ri:email</ref>
-                <displayName>email lowercased</displayName>
+                <displayName>email</displayName>
                 <matchingRule xmlns:gen486="http://prism.evolveum.com/xml/ns/public/matching-rule-3">gen486:default</matchingRule>
                 <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
-                <fetchStrategy>explicit</fetchStrategy>
-                <inbound id="7">
-                    <name>emaillowercasemapping</name>
+                <fetchStrategy>implicit</fetchStrategy>
+                <inbound id="28">
                     <authoritative>true</authoritative>
                     <exclusive>false</exclusive>
-                    <strength>normal</strength>
+                    <strength>strong</strength>
                     <expression>
-                        <script>
-                            <code>
-        input.toLowerCase()
-    </code>
-                        </script>
+                        <asIs/>
                     </expression>
                     <target>
-                        <path>$projection/attributes/email</path>
+                        <path>$user/emailAddress</path>
+                    </target>
+                </inbound>
+            </attribute>
+            <attribute id="20">
+                <ref>icfs:name</ref>
+                <displayName>Name</displayName>
+                <tolerant>true</tolerant>
+                <exclusiveStrong>false</exclusiveStrong>
+                <inbound id="29">
+                    <authoritative>true</authoritative>
+                    <exclusive>false</exclusive>
+                    <strength>strong</strength>
+                    <expression>
+                        <asIs/>
+                    </expression>
+                    <target>
+                        <path>$user/name</path>
+                    </target>
+                </inbound>
+            </attribute>
+            <attribute id="22">
+                <ref>ri:firstname</ref>
+                <tolerant>true</tolerant>
+                <exclusiveStrong>false</exclusiveStrong>
+                <inbound id="24">
+                    <authoritative>true</authoritative>
+                    <exclusive>false</exclusive>
+                    <strength>strong</strength>
+                    <expression>
+                        <asIs/>
+                    </expression>
+                    <target>
+                        <path>$user/givenName</path>
+                    </target>
+                </inbound>
+            </attribute>
+            <attribute id="23">
+                <ref>ri:lastname</ref>
+                <tolerant>true</tolerant>
+                <exclusiveStrong>false</exclusiveStrong>
+                <inbound id="25">
+                    <authoritative>true</authoritative>
+                    <exclusive>false</exclusive>
+                    <strength>strong</strength>
+                    <expression>
+                        <asIs/>
+                    </expression>
+                    <target>
+                        <path>$user/familyName</path>
                     </target>
                 </inbound>
             </attribute>
@@ -282,8 +326,16 @@
             <name>Regular Refresh</name>
             <objectClass>ri:AccountObjectClass</objectClass>
             <kind>account</kind>
-            <focusType>c:UserType</focusType>
+            <focusType>UserType</focusType>
             <enabled>true</enabled>
+            <correlation>
+                <q:equal>
+                    <q:path>name</q:path>
+                    <expression>
+                        <path>$account/attributes/icfs:uid</path>
+                    </expression>
+                </q:equal>
+            </correlation>
             <reaction>
                 <name>RRlinked</name>
                 <situation>linked</situation>

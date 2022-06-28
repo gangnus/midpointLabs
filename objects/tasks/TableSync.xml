@@ -7,26 +7,6 @@
         <creatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
         <createChannel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</createChannel>
     </metadata>
-    <operationExecution id="2">
-        <recordType>simple</recordType>
-        <timestamp>2022-06-26T19:46:22.796+02:00</timestamp>
-        <operation>
-            <objectDelta>
-                <t:changeType>add</t:changeType>
-                <t:objectType>c:TaskType</t:objectType>
-            </objectDelta>
-            <executionResult>
-                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
-                <status>success</status>
-                <importance>normal</importance>
-                <token>1000000000000062968</token>
-            </executionResult>
-            <objectName>Table Sync</objectName>
-        </operation>
-        <status>success</status>
-        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
-        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
-    </operationExecution>
     <assignment id="1">
         <metadata>
             <requestTimestamp>2022-06-26T19:46:22.714+02:00</requestTimestamp>
@@ -48,17 +28,25 @@
     <ownerRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
     <executionState>suspended</executionState>
     <schedulingState>suspended</schedulingState>
+
     <category>LiveSynchronization</category>
     <objectRef oid="7e7a965f-d182-456f-aff1-b967231d23e6" relation="org:default" type="c:ResourceType"/>
     <binding>tight</binding>
+    <schedule>
+        <interval>10</interval>
+    </schedule>
+
     <activity>
+
         <work>
             <liveSynchronization>
+
                 <resourceObjects>
                     <resourceRef oid="7e7a965f-d182-456f-aff1-b967231d23e6" relation="org:default" type="c:ResourceType"/>
                     <kind>account</kind>
                     <objectclass>ri:AccountObjectClass</objectclass>
                 </resourceObjects>
+
             </liveSynchronization>
         </work>
     </activity>

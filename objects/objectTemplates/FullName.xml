@@ -1,0 +1,58 @@
+<objectTemplate xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="e92fa892-54ea-4331-a682-b405bd43279b" version="1">
+    <name>Full Name</name>
+    <metadata>
+        <requestTimestamp>2022-06-27T14:24:12.134+02:00</requestTimestamp>
+        <requestorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <createTimestamp>2022-06-27T14:24:12.153+02:00</createTimestamp>
+        <creatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <createChannel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</createChannel>
+    </metadata>
+    <operationExecution id="1">
+        <recordType>simple</recordType>
+        <timestamp>2022-06-27T14:24:12.179+02:00</timestamp>
+        <operation>
+            <objectDelta>
+                <t:changeType>add</t:changeType>
+                <t:objectType>c:ObjectTemplateType</t:objectType>
+            </objectDelta>
+            <executionResult>
+                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
+                <status>success</status>
+                <importance>normal</importance>
+                <token>1000000000000014489</token>
+            </executionResult>
+            <objectName>Full Name</objectName>
+        </operation>
+        <status>success</status>
+        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
+    </operationExecution>
+    <iteration>0</iteration>
+    <iterationToken/>
+    <mapping>
+        <description>
+            Property mapping.
+            Defines how properties of user object are set up.
+            This specific definition sets a full name as a concatenation
+            of givenName.familyName.
+        </description>
+        <strength>weak</strength>
+        <source>
+            <path>$user/firstname</path>
+        </source>
+        <source>
+            <path>$user/lastname</path>
+        </source>
+        <expression>
+            <script>
+                <language>http://midpoint.evolveum.com/xml/ns/public/expression/language#Groovy</language>
+                <code>
+                    "givenName.familyName"
+                </code>
+            </script>
+        </expression>
+        <target>
+            <path>$user/fullName</path>
+        </target>
+    </mapping>
+</objectTemplate>
