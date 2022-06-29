@@ -1,4 +1,4 @@
-<resource xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="7e7a965f-d182-456f-aff1-b967231d23e6" version="38">
+<resource xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="7e7a965f-d182-456f-aff1-b967231d23e6" version="151">
     <name>HRSystem</name>
     <metadata>
         <modifyTimestamp>2022-06-26T21:38:11.009+02:00</modifyTimestamp>
@@ -121,11 +121,11 @@
     </operationalStateHistory>
     <connectorRef oid="d31266f0-40a8-448b-a41b-1c9d9f6d4099" relation="org:default" type="c:ConnectorType"/>
     <connectorConfiguration xmlns:icfc="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/connector-schema-3">
-        <icfc:configurationProperties xmlns:gen83="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/bundle/com.evolveum.polygon.connector-databasetable/org.identityconnectors.databasetable.DatabaseTableConnector">
-            <gen83:host>localhost</gen83:host>
-            <gen83:port>5432</gen83:port>
-            <gen83:user>postgres</gen83:user>
-            <gen83:password>
+        <icfc:configurationProperties xmlns:gen351="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/bundle/com.evolveum.polygon.connector-databasetable/org.identityconnectors.databasetable.DatabaseTableConnector">
+            <gen351:host>localhost</gen351:host>
+            <gen351:port>5432</gen351:port>
+            <gen351:user>postgres</gen351:user>
+            <gen351:password>
                 <t:encryptedData>
                     <t:encryptionMethod>
                         <t:algorithm>http://www.w3.org/2001/04/xmlenc#aes256-cbc</t:algorithm>
@@ -137,17 +137,17 @@
                         <t:cipherValue>niG5bLctgFU9uZnGCqohPvz+6PJtIrm0Oqvz+AuKoCc=</t:cipherValue>
                     </t:cipherData>
                 </t:encryptedData>
-            </gen83:password>
-            <gen83:database>TestResource</gen83:database>
-            <gen83:table>hr</gen83:table>
-            <gen83:keyColumn>user_id</gen83:keyColumn>
-            <gen83:jdbcDriver>org.postgresql.Driver</gen83:jdbcDriver>
-            <gen83:jdbcUrlTemplate>jdbc:postgresql://localhost:5432/TestResource</gen83:jdbcUrlTemplate>
-            <gen83:nativeTimestamps>true</gen83:nativeTimestamps>
-            <gen83:validConnectionTimeout>5</gen83:validConnectionTimeout>
-            <gen83:changeLogColumn>changedate</gen83:changeLogColumn>
-            <gen83:syncOrderColumn>user_id</gen83:syncOrderColumn>
-            <gen83:syncOrderAsc>true</gen83:syncOrderAsc>
+            </gen351:password>
+            <gen351:database>TestResource</gen351:database>
+            <gen351:table>hr</gen351:table>
+            <gen351:keyColumn>user_id</gen351:keyColumn>
+            <gen351:jdbcDriver>org.postgresql.Driver</gen351:jdbcDriver>
+            <gen351:jdbcUrlTemplate>jdbc:postgresql://localhost:5432/TestResource</gen351:jdbcUrlTemplate>
+            <gen351:nativeTimestamps>true</gen351:nativeTimestamps>
+            <gen351:validConnectionTimeout>5</gen351:validConnectionTimeout>
+            <gen351:changeLogColumn>changedate</gen351:changeLogColumn>
+            <gen351:syncOrderColumn>user_id</gen351:syncOrderColumn>
+            <gen351:syncOrderAsc>true</gen351:syncOrderAsc>
         </icfc:configurationProperties>
     </connectorConfiguration>
     <schema>
@@ -239,7 +239,13 @@
                     <exclusive>false</exclusive>
                     <strength>strong</strength>
                     <expression>
-                        <asIs/>
+                        <script>
+                            <language>http://midpoint.evolveum.com/xml/ns/public/expression/language#Groovy</language>
+                            <code>
+                                user.
+                                input.toLowerCase()
+                            </code>
+                        </script>
                     </expression>
                     <target>
                         <path>$user/emailAddress</path>
@@ -270,7 +276,7 @@
                 <inbound id="24">
                     <authoritative>true</authoritative>
                     <exclusive>false</exclusive>
-                    <strength>strong</strength>
+                    <strength>normal</strength>
                     <expression>
                         <asIs/>
                     </expression>
@@ -295,6 +301,35 @@
                     </target>
                 </inbound>
             </attribute>
+            <activation>
+                <administrativeStatus>
+                    <inbound>
+                        <strength>normal</strength>
+                        <expression>
+                            <asIs />
+                        </expression>
+                    </inbound>
+                </administrativeStatus>
+            </activation>
+            <credentials>
+                <password xsi:type="c:ResourcePasswordDefinitionType">
+                    <compareStrategy>cached</compareStrategy>
+                    <caching>
+                        <cachingStategy>passive</cachingStategy>
+                    </caching>
+                    <outbound>
+                        <expression>
+                            <asIs />
+                        </expression>
+                    </outbound>
+                    <inbound>
+                        <strength>weak</strength>
+                        <expression>
+                            <generate />
+                        </expression>
+                    </inbound>
+                </password>
+            </credentials>
         </objectType>
     </schemaHandling>
     <capabilities>
@@ -336,6 +371,7 @@
                     </expression>
                 </q:equal>
             </correlation>
+            <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
             <reaction>
                 <name>RRlinked</name>
                 <situation>linked</situation>
@@ -345,6 +381,7 @@
                 <name>RRunlinked</name>
                 <situation>unlinked</situation>
                 <synchronize>true</synchronize>
+                <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
                 <action>
                     <name>RRAlink</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#link</handlerUri>
@@ -354,6 +391,7 @@
                 <name>RRunmatched</name>
                 <situation>unmatched</situation>
                 <synchronize>true</synchronize>
+                <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
                 <action>
                     <name>RRAaddFocus</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>
