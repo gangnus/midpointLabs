@@ -1,5 +1,5 @@
-<securityPolicy xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="00000000-0000-0000-0000-000000000120" version="4">
-    <name>Table Security Policy</name>
+<securityPolicy xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="00000000-0000-0000-0000-000000000120" version="1">
+    <name>Default Security Policy</name>
     <metadata>
         <requestTimestamp>2022-06-02T16:01:15.699+02:00</requestTimestamp>
         <createTimestamp>2022-06-02T16:01:15.711+02:00</createTimestamp>
@@ -28,11 +28,11 @@
     <iterationToken/>
     <credentials>
         <password>
-            <maxAge>P180D</maxAge>
+            <minOccurs>0</minOccurs>
             <lockoutMaxFailedAttempts>3</lockoutMaxFailedAttempts>
             <lockoutFailedAttemptsDuration>PT3M</lockoutFailedAttemptsDuration>
             <lockoutDuration>PT15M</lockoutDuration>
-            <valuePolicyRef oid="7128518b-2b6f-42cb-a7f0-1fe4952e626c" relation="org:default" type="c:ValuePolicyType"/>
+            <valuePolicyRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="00000000-0000-0000-0000-000000000003" relation="org:default" type="tns:ValuePolicyType"/>
         </password>
     </credentials>
 </securityPolicy>

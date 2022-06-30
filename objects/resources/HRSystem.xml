@@ -242,7 +242,6 @@
                         <script>
                             <language>http://midpoint.evolveum.com/xml/ns/public/expression/language#Groovy</language>
                             <code>
-                                user.
                                 input.toLowerCase()
                             </code>
                         </script>
@@ -302,6 +301,7 @@
                 </inbound>
             </attribute>
             <activation>
+                <administrativeStatus>enabled</administrativeStatus>
                 <administrativeStatus>
                     <inbound>
                         <strength>normal</strength>
