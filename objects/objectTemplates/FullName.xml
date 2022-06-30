@@ -1,4 +1,4 @@
-<objectTemplate xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="e92fa892-54ea-4331-a682-b405bd43279b" version="1">
+<objectTemplate xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="e92fa892-54ea-4331-a682-b405bd43279b" version="15">
     <name>Full Name</name>
     <metadata>
         <requestTimestamp>2022-06-27T14:24:12.134+02:00</requestTimestamp>
@@ -9,7 +9,7 @@
     </metadata>
     <iteration>0</iteration>
     <iterationToken/>
-    <mapping>
+    <mapping id="1">
         <description>
             This specific definition sets a full name as a concatenation
             of givenName.familyName.
@@ -31,6 +31,32 @@
         </expression>
         <target>
             <path>fullName</path>
+        </target>
+    </mapping>
+    <mapping id="2">
+        <authoritative>true</authoritative>
+        <strength>weak</strength>
+        <expression>
+            <assignmentTargetSearch>
+                <targetType>c:RoleType</targetType>
+                <oid>00000000-0000-0000-0000-000000000008</oid>
+            </assignmentTargetSearch>
+        </expression>
+        <target>
+            <path>assignment</path>
+        </target>
+    </mapping>
+    <mapping id="3">
+        <authoritative>true</authoritative>
+        <strength>weak</strength>
+        <expression>
+            <assignmentTargetSearch>
+                <targetType>c:RoleType</targetType>
+                <oid>5b3b5e0-13ce-455c-abca-5d56b2c92b41</oid>
+            </assignmentTargetSearch>
+        </expression>
+        <target>
+            <path>assignment</path>
         </target>
     </mapping>
 </objectTemplate>

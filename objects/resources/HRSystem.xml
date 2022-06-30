@@ -300,17 +300,6 @@
                     </target>
                 </inbound>
             </attribute>
-            <activation>
-                <administrativeStatus>enabled</administrativeStatus>
-                <administrativeStatus>
-                    <inbound>
-                        <strength>normal</strength>
-                        <expression>
-                            <asIs />
-                        </expression>
-                    </inbound>
-                </administrativeStatus>
-            </activation>
             <credentials>
                 <password xsi:type="c:ResourcePasswordDefinitionType">
                     <compareStrategy>cached</compareStrategy>
