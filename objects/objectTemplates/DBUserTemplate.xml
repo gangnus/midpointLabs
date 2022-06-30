@@ -51,7 +51,7 @@
     </mapping>
     <mapping id="3">
         <description>
-            enabling administrativeStatus and effectiveStatus
+            enabling administrativeStatus
             till 1 year from this moment
         </description>
         <authoritative>true</authoritative>

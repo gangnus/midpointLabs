@@ -1,10 +1,7 @@
 <role xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="5b3b5e0-13ce-455c-abca-5d56b2c92b41" version="2">
     <name>PolicyFor1Year</name>
     <description>Object expires 1 year from the day this role is assigned</description>
-    <activation>
-        <administrativeStatus>enabled</administrativeStatus>
-        <effectiveStatus>enabled</effectiveStatus>
-    </activation>
+
     <displayName>Policy: 1 year expiration</displayName>
     <inducement id="1">
         <focusMappings>
