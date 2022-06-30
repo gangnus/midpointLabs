@@ -33,6 +33,34 @@
             <path>fullName</path>
         </target>
     </mapping>
+    <mapping>
+        <description>
+            This specific definition sets an AMI nickname as a concatenation
+            of three lettes from given name and surname.
+        </description>
+        <strength>weak</strength>
+        <source>
+            <path>$user/givenName</path>
+        </source>
+        <source>
+            <path>$user/familyName</path>
+        </source>
+        <expression>
+            <script>
+                <language>http://midpoint.evolveum.com/xml/ns/public/expression/language#Groovy</language>
+                <code>
+                    var first = ""
+                    if( givenName != null) first = givenName.substring(0,3)
+                    var second = ""
+                    if( familyName != null) second = familyName.substring(0,3)
+                    "${first}${second}".toUpperCase()
+                </code>
+            </script>
+        </expression>
+        <target>
+            <path>extension/zkratkaAMI</path>
+        </target>
+    </mapping>
     <mapping id="2">
         <description>
             Giving an EndUser role to the user
