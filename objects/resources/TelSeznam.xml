@@ -1,0 +1,227 @@
+<resource xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfc="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="d2c75340-48a4-49da-b9bc-e7c574fa63b8" version="5">
+    <name>TelSeznam</name>
+    <metadata>
+        <requestTimestamp>2022-07-01T13:25:52.304+02:00</requestTimestamp>
+        <requestorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <createTimestamp>2022-07-01T13:25:52.424+02:00</createTimestamp>
+        <creatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <createChannel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</createChannel>
+        <modifyTimestamp>2022-07-01T13:29:18.349+02:00</modifyTimestamp>
+        <modifierRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <modifyChannel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</modifyChannel>
+    </metadata>
+
+    <iteration>0</iteration>
+    <iterationToken/>
+    <operationalState>
+        <lastAvailabilityStatus>up</lastAvailabilityStatus>
+        <message>Status set to UP because testing connection using ConnectorSpec(resource:d2c75340-48a4-49da-b9bc-e7c574fa63b8(TelSeznam), name=null, oid=07c6e317-4de5-4720-a0fd-d79f7b065ecf). Connector test successful.</message>
+        <timestamp>2022-07-01T13:29:22.986+02:00</timestamp>
+        <nodeId>DefaultNode</nodeId>
+    </operationalState>
+    <operationalStateHistory id="3">
+        <lastAvailabilityStatus>up</lastAvailabilityStatus>
+        <message>Status set to UP because testing connection using ConnectorSpec(resource:d2c75340-48a4-49da-b9bc-e7c574fa63b8(TelSeznam), name=null, oid=07c6e317-4de5-4720-a0fd-d79f7b065ecf). Connector test successful.</message>
+        <timestamp>2022-07-01T13:29:22.986+02:00</timestamp>
+        <nodeId>DefaultNode</nodeId>
+    </operationalStateHistory>
+    <connectorRef oid="07c6e317-4de5-4720-a0fd-d79f7b065ecf" relation="org:default" type="c:ConnectorType"/>
+    <connectorConfiguration xmlns:icfc="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/connector-schema-3">
+        <icfc:configurationProperties xmlns:gen215="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/bundle/com.evolveum.polygon.connector-ldap/com.evolveum.polygon.connector.ldap.LdapConnector">
+            <gen215:host>pgangnus01</gen215:host>
+            <gen215:port>1389</gen215:port>
+            <gen215:bindDn>uid=idm,ou=Administrators,dc=example,dc=com</gen215:bindDn>
+            <gen215:bindPassword>
+                <t:encryptedData>
+                    <t:encryptionMethod>
+                        <t:algorithm>http://www.w3.org/2001/04/xmlenc#aes256-cbc</t:algorithm>
+                    </t:encryptionMethod>
+                    <t:keyInfo>
+                        <t:keyName>GdPPsZLkOG87LJ39IjfSofU8DdE=</t:keyName>
+                    </t:keyInfo>
+                    <t:cipherData>
+                        <t:cipherValue>1nKV1oCeLp8VTMfFhOoJHYtiTULO5zMWIYcqDyxvD4I=</t:cipherValue>
+                    </t:cipherData>
+                </t:encryptedData>
+            </gen215:bindPassword>
+            <gen215:baseContextToSynchronize>ou=people,dc=example,dc=com</gen215:baseContextToSynchronize>
+        </icfc:configurationProperties>
+    </connectorConfiguration>
+	<schema>
+		<!-- workaround to MID-2723 -->
+		<generationConstraints>
+			<generateObjectClass>ri:inetOrgPerson</generateObjectClass>
+			<generateObjectClass>ri:groupOfUniqueNames</generateObjectClass>
+			<generateObjectClass>ri:groupOfNames</generateObjectClass>
+			<generateObjectClass>ri:organizationalUnit</generateObjectClass>
+		</generationConstraints>
+	</schema>
+
+    <schemaHandling>
+        <objectType>
+            <intent>default</intent>
+            <displayName>Default Account</displayName>
+            <default>true</default>
+            <objectClass>ri:inetOrgPerson</objectClass>
+            <attribute>
+                <ref>ri:dn</ref>
+                <displayName>Distinguished Name</displayName>
+                <outbound>
+                    <source>
+                        <path>$user/name</path>
+                    </source>
+                    <expression>
+                        <script>
+                            <code>'uid=' + name + ',ou=Users,dc=example,dc=com'</code>
+                        </script>
+                    </expression>
+                </outbound>
+            </attribute>
+            <attribute>
+                <ref>ri:cn</ref>
+                <displayName>Common Name</displayName>
+                <limitations>
+                    <minOccurs>0</minOccurs>
+                    <access>
+                        <read>true</read>
+                        <add>true</add>
+                        <modify>true</modify>
+                    </access>
+                </limitations>
+                <outbound>
+                    <source>
+                        <path>fullName</path>
+                    </source>
+                </outbound>
+                <inbound>
+                    <strength>weak</strength>
+                    <target>
+                        <path>fullName</path>
+                    </target>
+                </inbound>
+            </attribute>
+            <attribute>
+                <ref>ri:sn</ref>
+                <displayName>Surname</displayName>
+                <limitations>
+                    <minOccurs>0</minOccurs>
+                </limitations>
+                <outbound>
+                    <source>
+                        <path>familyName</path>
+                    </source>
+                </outbound>
+                <inbound>
+                    <strength>weak</strength>
+                    <target>
+                        <path>familyName</path>
+                    </target>
+                </inbound>
+            </attribute>
+            <attribute>
+                <ref>ri:givenName</ref>
+                <displayName>Given Name</displayName>
+                <outbound>
+                    <source>
+                        <path>givenName</path>
+                    </source>
+                </outbound>
+                <inbound>
+                    <strength>weak</strength>
+                    <target>
+                        <path>givenName</path>
+                    </target>
+                </inbound>
+            </attribute>
+            <attribute>
+                <ref>ri:uid</ref>
+                <displayName>Login Name</displayName>
+                <limitations>
+                    <access>
+                        <read>true</read>
+                        <add>true</add>
+                    </access>
+                </limitations>
+                <outbound>
+                    <strength>weak</strength>
+                    <source>
+                        <path>$user/name</path>
+                    </source>
+                </outbound>
+                 <inbound>
+                    <strength>weak</strength>
+                    <target>
+                        <path>$c:user/c:name</path>
+                    </target>
+                </inbound>
+            </attribute>
+
+            <credentials>
+                <password>
+                    <outbound>
+                        <expression>
+                            <asIs/>
+                        </expression>
+                    </outbound>
+                    <inbound>
+                        <strength>weak</strength>
+                        <expression>
+                            <generate/>
+                        </expression>
+                    </inbound>
+                </password>
+            </credentials>
+        </objectType>
+
+    </schemaHandling>
+    <synchronization>
+        <objectSynchronization>
+            <name>Regular LDAP Refresh</name>
+            <objectClass>ri:inetOrgPerson</objectClass>
+            <kind>account</kind>
+            <focusType>UserType</focusType>
+            <enabled>true</enabled>
+            <correlation>
+                <q:description>
+                    Correlation expression is a search query.
+                    Following search query will look for users that have "name"
+                    equal to the "uid" attribute of the account. Simply speaking,
+                    it will look for match in usernames in the IDM and the resource.
+                    The correlation rule always looks for users, so it will not match
+                    any other object type.
+                </q:description>
+                <q:equal>
+                    <q:path>c:name</q:path>
+                    <expression>
+                        <path>
+                        $account/attributes/ri:uid
+                        </path>
+                    </expression>
+                </q:equal>
+            </correlation>
+            <reaction>
+                <name>RRlinked</name>
+                <situation>linked</situation>
+                <synchronize>true</synchronize>
+            </reaction>
+            <reaction>
+                <name>RRunlinked</name>
+                <situation>unlinked</situation>
+                <synchronize>true</synchronize>
+                <action>
+                    <name>RRAlink</name>
+                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#link</handlerUri>
+                </action>
+            </reaction>
+            <reaction>
+                <name>RRunmatched</name>
+                <situation>unmatched</situation>
+                <synchronize>true</synchronize>
+                <action>
+                    <name>RRAaddFocus</name>
+                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>
+                </action>
+            </reaction>
+        </objectSynchronization>
+    </synchronization>
+</resource>

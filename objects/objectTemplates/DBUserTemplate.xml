@@ -25,13 +25,18 @@
             <script>
                 <language>http://midpoint.evolveum.com/xml/ns/public/expression/language#Groovy</language>
                 <code>
-                    "${givenName}.${familyName}"
+                    var first = ""
+                    if( givenName != null) first = givenName
+                    var second = ""
+                    if( familyName != null) second = familyName
+                    "${first}.${second}"
                 </code>
             </script>
         </expression>
         <target>
             <path>fullName</path>
         </target>
+        <evaluationPhase>afterAssignments</evaluationPhase>
     </mapping>
     <mapping>
         <description>
@@ -60,6 +65,7 @@
         <target>
             <path>extension/zkratkaAMI</path>
         </target>
+        <evaluationPhase>afterAssignments</evaluationPhase>
     </mapping>
     <mapping id="2">
         <description>

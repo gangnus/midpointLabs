@@ -302,10 +302,6 @@
             </attribute>
             <credentials>
                 <password xsi:type="c:ResourcePasswordDefinitionType">
-                    <compareStrategy>cached</compareStrategy>
-                    <caching>
-                        <cachingStategy>passive</cachingStategy>
-                    </caching>
                     <outbound>
                         <expression>
                             <asIs />
@@ -347,7 +343,7 @@
     </capabilities>
     <synchronization>
         <objectSynchronization>
-            <name>Regular Refresh</name>
+            <name>Regular Table Refresh</name>
             <objectClass>ri:AccountObjectClass</objectClass>
             <kind>account</kind>
             <focusType>UserType</focusType>

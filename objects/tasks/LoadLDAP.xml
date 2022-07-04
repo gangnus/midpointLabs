@@ -1,0 +1,20 @@
+<task xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="ea09458e-b15b-4425-bf10-e3b037cf8624" version="1">
+    <name>Load LDAP</name>
+    <taskIdentifier>1656936746669-0-1</taskIdentifier>
+    <ownerRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+    <executionState>suspended</executionState>
+    <schedulingState>suspended</schedulingState>
+    <category>Reconciliation</category>
+    <binding>tight</binding>
+    <activity>
+        <work>
+            <reconciliation>
+                <resourceObjects>
+                    <resourceRef oid="d2c75340-48a4-49da-b9bc-e7c574fa63b8" relation="org:default" type="c:ResourceType"/>
+                    <kind>account</kind>
+                    <intent>default</intent>
+                </resourceObjects>
+            </reconciliation>
+        </work>
+    </activity>
+</task>
