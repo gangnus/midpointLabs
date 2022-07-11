@@ -871,7 +871,6 @@
                             <xsd:annotation>
                                 <xsd:appinfo>
                                     <a:displayOrder>460</a:displayOrder>
-                                    <a:matchingRule xmlns:qn452="http://prism.evolveum.com/xml/ns/public/matching-rule-3">qn452:stringIgnoreCase</a:matchingRule>
                                     <ra:nativeAttributeName>givenName</ra:nativeAttributeName>
                                     <ra:frameworkAttributeName>givenName</ra:frameworkAttributeName>
                                 </xsd:appinfo>
@@ -1149,10 +1148,42 @@
                     <access>
                         <read>true</read>
                         <add>false</add>
-                        <modify>true</modify>
+                        <modify>false</modify>
                     </access>
                 </limitations>
                 <matchingRule>stringIgnoreCase</matchingRule>
+            </attribute>
+            <attribute>
+                <ref>ri:mail</ref>
+                <displayName>Entry UUID</displayName>
+                <limitations>
+                    <access>
+                        <read>true</read>
+                        <add>false</add>
+                        <modify>false</modify>
+                    </access>
+                </limitations>
+                <matchingRule>stringIgnoreCase</matchingRule>
+                <outbound>
+                    <strength>normal</strength>
+                    <source>
+                        <c:path>$focus/emailAddress</c:path>
+                    </source>
+                    <expression>
+                        <asIs/>
+                    </expression>
+                </outbound>
+                <inbound>
+                    <trace>true</trace>
+                    <strength>weak</strength>
+                    <expression>
+                        <asIs/>
+                    </expression>
+                    <target>
+                        <c:path>$focus/emailAddress</c:path>
+                    </target>
+                </inbound>
+
             </attribute>
 
             <activation>
@@ -1235,6 +1266,7 @@
                     </expression>
                 </q:equal>
             </correlation>
+            <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
             <reaction>
                 <name>RRlinked</name>
                 <situation>linked</situation>
@@ -1244,6 +1276,7 @@
                 <name>RRunlinked</name>
                 <situation>unlinked</situation>
                 <synchronize>true</synchronize>
+                <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
                 <action>
                     <name>RRAlink</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#link</handlerUri>
@@ -1253,6 +1286,7 @@
                 <name>RRunmatched</name>
                 <situation>unmatched</situation>
                 <synchronize>true</synchronize>
+                <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
                 <action>
                     <name>RRAaddFocus</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>
