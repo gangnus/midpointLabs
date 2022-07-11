@@ -6,6 +6,9 @@
     <schedulingState>suspended</schedulingState>
     <category>Reconciliation</category>
     <binding>tight</binding>
+        <schedule>
+        <interval>10</interval>
+    </schedule>
     <activity>
         <work>
             <reconciliation>
