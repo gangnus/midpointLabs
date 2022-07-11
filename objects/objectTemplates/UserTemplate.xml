@@ -100,7 +100,8 @@
             <path>assignment</path>
         </target>
     </mapping>
-        <mapping>
+    <mapping>
+
         <description>
             Giving a TelSeznamRole role to the user
         </description>

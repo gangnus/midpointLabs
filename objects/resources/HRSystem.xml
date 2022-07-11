@@ -230,10 +230,23 @@
             <attribute id="6">
                 <ref>ri:email</ref>
                 <displayName>email</displayName>
-                <matchingRule xmlns:gen486="http://prism.evolveum.com/xml/ns/public/matching-rule-3">gen486:default</matchingRule>
+                <limitations>
+                    <access>
+                        <read>true</read>
+                        <add>true</add>
+                        <modify>true</modify>
+                    </access>
+                </limitations>
+                <matchingRule>stringIgnoreCase</matchingRule>
                 <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
                 <fetchStrategy>implicit</fetchStrategy>
+                <outbound>
+                    <trace>true</trace>
+                    <source>
+                        <path>$user/emailAddress</path>
+                    </source>
+                </outbound>
                 <inbound id="28">
                     <authoritative>true</authoritative>
                     <exclusive>false</exclusive>
@@ -256,6 +269,13 @@
                 <displayName>Name</displayName>
                 <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
+                <outbound>
+                    <trace>true</trace>
+                    <source>
+                        <path>$user/name</path>
+                    </source>
+                </outbound>
+
                 <inbound id="29">
                     <authoritative>true</authoritative>
                     <exclusive>false</exclusive>
@@ -268,10 +288,29 @@
                     </target>
                 </inbound>
             </attribute>
+           <attribute>
+
+                <ref>icfs:uid</ref>
+                <displayName>Uid</displayName>
+                <tolerant>true</tolerant>
+                <exclusiveStrong>false</exclusiveStrong>
+                <outbound>
+                    <trace>true</trace>
+                    <source>
+                        <path>$user/name</path>
+                    </source>
+                </outbound>
+
+            </attribute>
             <attribute id="22">
                 <ref>ri:firstname</ref>
                 <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
+                <outbound>
+                    <source>
+                        <path>$user/givenName</path>
+                    </source>
+                </outbound>
                 <inbound id="24">
                     <authoritative>true</authoritative>
                     <exclusive>false</exclusive>
@@ -288,6 +327,11 @@
                 <ref>ri:lastname</ref>
                 <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
+                <outbound>
+                    <source>
+                        <path>$user/familyName</path>
+                    </source>
+                </outbound>
                 <inbound id="25">
                     <authoritative>true</authoritative>
                     <exclusive>false</exclusive>
@@ -356,7 +400,7 @@
                     </expression>
                 </q:equal>
             </correlation>
-            <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
+
             <reaction>
                 <name>RRlinked</name>
                 <situation>linked</situation>
@@ -366,7 +410,7 @@
                 <name>RRunlinked</name>
                 <situation>unlinked</situation>
                 <synchronize>true</synchronize>
-                <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
+
                 <action>
                     <name>RRAlink</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#link</handlerUri>
@@ -376,7 +420,7 @@
                 <name>RRunmatched</name>
                 <situation>unmatched</situation>
                 <synchronize>true</synchronize>
-                <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
+
                 <action>
                     <name>RRAaddFocus</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>

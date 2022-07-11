@@ -1119,6 +1119,7 @@
                 </limitations>
                 <matchingRule>stringIgnoreCase</matchingRule>
                 <outbound>
+                    <trace>true</trace>
                     <strength>weak</strength>
                     <source>
                         <c:path>$focus/name</c:path>
@@ -1142,29 +1143,18 @@
                 </inbound>
             </attribute>
             <attribute>
-                <ref>ri:entryUUID</ref>
-                <displayName>Entry UUID</displayName>
-                <limitations>
-                    <access>
-                        <read>true</read>
-                        <add>false</add>
-                        <modify>false</modify>
-                    </access>
-                </limitations>
-                <matchingRule>stringIgnoreCase</matchingRule>
-            </attribute>
-            <attribute>
                 <ref>ri:mail</ref>
                 <displayName>Entry UUID</displayName>
                 <limitations>
                     <access>
                         <read>true</read>
-                        <add>false</add>
-                        <modify>false</modify>
+                        <add>true</add>
+                        <modify>true</modify>
                     </access>
                 </limitations>
                 <matchingRule>stringIgnoreCase</matchingRule>
                 <outbound>
+                    <trace>true</trace>
                     <strength>normal</strength>
                     <source>
                         <c:path>$focus/emailAddress</c:path>
@@ -1266,17 +1256,18 @@
                     </expression>
                 </q:equal>
             </correlation>
-            <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
+
             <reaction>
                 <name>RRlinked</name>
                 <situation>linked</situation>
                 <synchronize>true</synchronize>
             </reaction>
+
             <reaction>
                 <name>RRunlinked</name>
                 <situation>unlinked</situation>
                 <synchronize>true</synchronize>
-                <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
+
                 <action>
                     <name>RRAlink</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#link</handlerUri>
@@ -1286,7 +1277,7 @@
                 <name>RRunmatched</name>
                 <situation>unmatched</situation>
                 <synchronize>true</synchronize>
-                <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b"/>
+
                 <action>
                     <name>RRAaddFocus</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>

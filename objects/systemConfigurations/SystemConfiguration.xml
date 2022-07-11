@@ -90,7 +90,6 @@
     <indestructible>true</indestructible>
     <iteration>0</iteration>
     <iterationToken/>
-    <globalSecurityPolicyRef oid="00000000-0000-0000-0000-000000000120" relation="org:default" type="tns:SecurityPolicyType"/>
     <logging>
         <classLogger id="1">
             <level>ERROR</level>
@@ -170,6 +169,11 @@
         </auditing>
     </logging>
 
+    <c:defaultObjectPolicyConfiguration>
+        <type>c:UserType</type>
+        <objectTemplateRef oid="e92fa892-54ea-4331-a682-b405bd43279b" type="c:ObjectTemplateType"/>
+    </c:defaultObjectPolicyConfiguration>
+
     <cleanupPolicy>
         <auditRecords>
             <maxAge>P3M</maxAge>
@@ -210,7 +214,7 @@
                 <compressOutput>true</compressOutput>
                 <collectLogEntries>true</collectLogEntries>
                 <loggingOverride>
-                    <levelOverride id="18">
+                    <levelOverride>
                         <logger>com.evolveum.midpoint.model</logger>
                         <level>TRACE</level>
                     </levelOverride>
@@ -228,7 +232,7 @@
                 <compressOutput>true</compressOutput>
                 <collectLogEntries>true</collectLogEntries>
                 <loggingOverride>
-                    <levelOverride id="20">
+                    <levelOverride>
                         <logger>org.hibernate.SQL</logger>
                         <level>TRACE</level>
                     </levelOverride>
@@ -820,12 +824,9 @@
                 <description>Apache Commons: Strings</description>
                 <decision>allow</decision>
             </class>
+
         </permissionProfile>
 
     </expressions>
-
-    <roleManagement>
-        <autoassignEnabled>true</autoassignEnabled>
-    </roleManagement>
 
 </systemConfiguration>

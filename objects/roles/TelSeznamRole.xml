@@ -9,6 +9,7 @@
         <construction>
             <!-- OpenLDAP -->
             <resourceRef oid="d2c75340-48a4-49da-b9bc-e7c574fa63b8"/>
+            <kind>account</kind>
             <attribute>
                 <ref>ri:ou</ref>
                 <outbound>
