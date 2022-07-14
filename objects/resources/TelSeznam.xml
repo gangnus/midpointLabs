@@ -35,8 +35,8 @@
                     </t:cipherData>
                 </t:encryptedData>
             </gen970:bindPassword>
-            <gen970:baseContext>ou=people,dc=example,dc=com</gen970:baseContext>
-            <gen970:baseContextToSynchronize>ou=people,dc=example,dc=com</gen970:baseContextToSynchronize>
+            <gen970:baseContext>dc=example,dc=com</gen970:baseContext>
+            <gen970:baseContextToSynchronize>dc=example,dc=com</gen970:baseContextToSynchronize>
         </icfc:configurationProperties>
     </connectorConfiguration>
     <schema>
@@ -1042,12 +1042,31 @@
                 </limitations>
                 <matchingRule>stringIgnoreCase</matchingRule>
                 <outbound>
+                    <trace>true</trace>
+                    <strength>strong</strength>
                     <source>
                         <path>$user/name</path>
                     </source>
                     <expression>
                         <script>
-                            <code>'uid=' + name + iterationToken + ',ou=People,dc=example,dc=com'</code>
+                            <code>
+                                import javax.naming.ldap.Rdn
+                                import javax.naming.ldap.LdapName
+                                defaultDn = new LdapName('ou=Default,ou=AMI,dc=example,dc=com')
+                                dn = new LdapName('ou=AMI,dc=example,dc=com')
+                                parents = midpoint.getParentOrgs(focus)
+                                log.error("parents = {}", parents.toListString())
+                                for (int i = parents.size() -1 ; i &gt;= 0; i--) {
+                                    dn.add(new Rdn('ou', basic.stringify(parents.get(i).name)))
+                                }
+                                if(parents.size()==0 ){
+                                    log.error("No parents dn = {}", dn.toString())
+                                    dn = defaultDn
+                                }
+                                dn.add(new Rdn('uid', basic.stringify(name)))
+                                log.error("dn = {}", dn)
+                                return dn.toString()
+                            </code>
                         </script>
                     </expression>
                  </outbound>
@@ -1270,14 +1289,13 @@
 
                 <action>
                     <name>RRAlink</name>
-                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#link</handlerUri>
+                    <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#linkAccount</handlerUri>
                 </action>
             </reaction>
             <reaction>
                 <name>RRunmatched</name>
                 <situation>unmatched</situation>
                 <synchronize>true</synchronize>
-
                 <action>
                     <name>RRAaddFocus</name>
                     <handlerUri>http://midpoint.evolveum.com/xml/ns/public/model/action-3#addFocus</handlerUri>

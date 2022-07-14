@@ -1,0 +1,53 @@
+<org xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="c69746c0-d6da-4e3a-96b5-84074eba4d79" version="1">
+    <name>PORTAL</name>
+    <parentOrgRef oid="f5f9fde7-a095-4625-b990-4d482389c9dd" relation="org:default" type="c:OrgType"/>
+    <metadata>
+        <requestTimestamp>2022-07-11T16:11:26.073+02:00</requestTimestamp>
+        <requestorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <createTimestamp>2022-07-11T16:11:26.085+02:00</createTimestamp>
+        <creatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <createChannel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</createChannel>
+    </metadata>
+    <tenantRef xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" oid="f5f9fde7-a095-4625-b990-4d482389c9dd" relation="org:default" type="tns:OrgType"/>
+    <operationExecution id="2">
+        <recordType>simple</recordType>
+        <timestamp>2022-07-11T16:11:26.107+02:00</timestamp>
+        <operation>
+            <objectDelta>
+                <t:changeType>add</t:changeType>
+                <t:objectType>c:OrgType</t:objectType>
+            </objectDelta>
+            <executionResult>
+                <operation>com.evolveum.midpoint.model.impl.lens.ChangeExecutor.executeDelta</operation>
+                <status>success</status>
+                <importance>normal</importance>
+                <token>1000000000000055232</token>
+            </executionResult>
+            <objectName>PORTAL</objectName>
+        </operation>
+        <status>success</status>
+        <initiatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+        <channel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</channel>
+    </operationExecution>
+    <assignment id="1">
+        <metadata>
+            <requestTimestamp>2022-07-11T16:11:26.073+02:00</requestTimestamp>
+            <requestorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+            <createTimestamp>2022-07-11T16:11:26.085+02:00</createTimestamp>
+            <creatorRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
+            <createChannel>http://midpoint.evolveum.com/xml/ns/public/common/channels-3#user</createChannel>
+        </metadata>
+        <targetRef oid="f5f9fde7-a095-4625-b990-4d482389c9dd" relation="org:default" type="c:OrgType"/>
+        <activation>
+            <effectiveStatus>enabled</effectiveStatus>
+        </activation>
+    </assignment>
+    <iteration>0</iteration>
+    <iterationToken/>
+    <roleMembershipRef oid="f5f9fde7-a095-4625-b990-4d482389c9dd" relation="org:default" type="c:OrgType"/>
+    <activation>
+        <effectiveStatus>enabled</effectiveStatus>
+        <enableTimestamp>2022-07-11T16:11:26.077+02:00</enableTimestamp>
+    </activation>
+    <tenant>false</tenant>
+</org>
