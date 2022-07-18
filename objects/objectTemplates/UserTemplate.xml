@@ -71,8 +71,7 @@
         <description>
             Giving an EndUser role to the user
         </description>
-        <authoritative>true</authoritative>
-        <strength>weak</strength>
+        <strength>strong</strength>
         <expression>
             <assignmentTargetSearch>
                 <targetType>c:RoleType</targetType>
@@ -88,8 +87,6 @@
             enabling administrativeStatus
             till 1 year from this moment
         </description>
-        <authoritative>true</authoritative>
-        <strength>weak</strength>
         <expression>
             <assignmentTargetSearch>
                 <targetType>c:RoleType</targetType>
@@ -105,8 +102,8 @@
         <description>
             Giving a TelSeznamRole role to the user
         </description>
-        <authoritative>true</authoritative>
-        <strength>weak</strength>
+
+        <strength>strong</strength>
         <expression>
             <assignmentTargetSearch>
                 <targetType>c:RoleType</targetType>
@@ -117,5 +114,22 @@
             <path>assignment</path>
         </target>
         <enabled>false</enabled>
+    </mapping>
+    <mapping>
+        <description>
+            Giving a TelSeznamMetaRole role to the user
+        </description>
+
+        <strength>strong</strength>
+        <expression>
+            <assignmentTargetSearch>
+                <targetType>c:RoleType</targetType>
+                <oid>5e8a8985-30f9-466e-b036-e5a8142c63fe</oid>
+            </assignmentTargetSearch>
+        </expression>
+        <target>
+            <path>assignment</path>
+        </target>
+        <enabled>true</enabled>
     </mapping>
 </objectTemplate>

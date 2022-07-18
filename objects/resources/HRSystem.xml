@@ -152,8 +152,8 @@
     </connectorConfiguration>
     <schema>
         <cachingMetadata>
-            <retrievalTimestamp>2022-06-24T18:34:02.461+02:00</retrievalTimestamp>
-            <serialNumber>2938bca45cb69c3d-6837f0815762c66</serialNumber>
+            <retrievalTimestamp>2022-07-14T15:27:02.379+02:00</retrievalTimestamp>
+            <serialNumber>1df85ea3c1b6d8d7-ee9e74abdbb31682</serialNumber>
         </cachingMetadata>
         <definition>
             <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:a="http://prism.evolveum.com/xml/ns/public/annotation-3" xmlns:ra="http://midpoint.evolveum.com/xml/ns/public/resource/annotation-3" xmlns:tns="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" elementFormDefault="qualified" targetNamespace="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3">
@@ -174,10 +174,18 @@
                         </xsd:appinfo>
                     </xsd:annotation>
                     <xsd:sequence>
-                        <xsd:element minOccurs="0" name="lastname" type="xsd:string">
+                        <xsd:element minOccurs="0" name="org" type="xsd:string">
                             <xsd:annotation>
                                 <xsd:appinfo>
                                     <a:displayOrder>120</a:displayOrder>
+                                    <ra:frameworkAttributeName>org</ra:frameworkAttributeName>
+                                </xsd:appinfo>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element minOccurs="0" name="lastname" type="xsd:string">
+                            <xsd:annotation>
+                                <xsd:appinfo>
+                                    <a:displayOrder>130</a:displayOrder>
                                     <ra:frameworkAttributeName>lastname</ra:frameworkAttributeName>
                                 </xsd:appinfo>
                             </xsd:annotation>
@@ -185,7 +193,7 @@
                         <xsd:element minOccurs="0" name="firstname" type="xsd:string">
                             <xsd:annotation>
                                 <xsd:appinfo>
-                                    <a:displayOrder>130</a:displayOrder>
+                                    <a:displayOrder>140</a:displayOrder>
                                     <ra:frameworkAttributeName>firstname</ra:frameworkAttributeName>
                                 </xsd:appinfo>
                             </xsd:annotation>
@@ -202,7 +210,7 @@
                         <xsd:element minOccurs="0" name="email" type="xsd:string">
                             <xsd:annotation>
                                 <xsd:appinfo>
-                                    <a:displayOrder>140</a:displayOrder>
+                                    <a:displayOrder>150</a:displayOrder>
                                     <ra:frameworkAttributeName>email</ra:frameworkAttributeName>
                                 </xsd:appinfo>
                             </xsd:annotation>
@@ -242,7 +250,7 @@
                 <exclusiveStrong>false</exclusiveStrong>
                 <fetchStrategy>implicit</fetchStrategy>
                 <outbound>
-                    <trace>true</trace>
+                    <trace>false</trace>
                     <source>
                         <path>$user/emailAddress</path>
                     </source>
@@ -270,7 +278,7 @@
                 <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
                 <outbound>
-                    <trace>true</trace>
+                    <trace>false</trace>
                     <source>
                         <path>$user/name</path>
                     </source>
@@ -288,19 +296,17 @@
                     </target>
                 </inbound>
             </attribute>
-           <attribute>
-
+            <attribute>
                 <ref>icfs:uid</ref>
                 <displayName>Uid</displayName>
                 <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
                 <outbound>
-                    <trace>true</trace>
+                    <trace>false</trace>
                     <source>
                         <path>$user/name</path>
                     </source>
                 </outbound>
-
             </attribute>
             <attribute id="22">
                 <ref>ri:firstname</ref>
@@ -343,6 +349,46 @@
                         <path>$user/familyName</path>
                     </target>
                 </inbound>
+            </attribute>
+            <attribute>
+                <ref>ri:org</ref>
+                <tolerant>true</tolerant>
+                <inbound>
+                    <trace>true</trace>
+                    <strength>strong</strength>
+                    <expression>
+                        <assignmentTargetSearch>
+                            <targetType>OrgType</targetType>
+                            <filter>
+                                <q:equal>
+                                    <q:path>name</q:path>
+                                    <expression>
+                                        <script>
+                                            <code>
+                                                log.error("org = {}", input.toString())
+                                                input.toString()
+                                            </code>
+                                        </script>
+                                    </expression>
+                                </q:equal>
+                            </filter>
+                        </assignmentTargetSearch>
+                    </expression>
+                    <target>
+                        <path>assignment</path>
+                        <set>
+                            <condition>
+                                <script>
+                                    <code>
+                                        log.error("--------------- types = {}", assignment.targetRef.type.localPart)
+                                        assignment.targetRef.type.localPart == "OrgType"
+                                    </code>
+                                </script>
+                            </condition>
+                        </set>
+                    </target>
+                </inbound>
+
             </attribute>
             <credentials>
                 <password xsi:type="c:ResourcePasswordDefinitionType">

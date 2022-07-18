@@ -588,16 +588,6 @@
                                 </xsd:appinfo>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="manager" type="xsd:string">
-                            <xsd:annotation>
-                                <xsd:appinfo>
-                                    <a:displayOrder>180</a:displayOrder>
-                                    <a:matchingRule xmlns:qn775="http://prism.evolveum.com/xml/ns/public/matching-rule-3">qn775:distinguishedName</a:matchingRule>
-                                    <ra:nativeAttributeName>manager</ra:nativeAttributeName>
-                                    <ra:frameworkAttributeName>manager</ra:frameworkAttributeName>
-                                </xsd:appinfo>
-                            </xsd:annotation>
-                        </xsd:element>
                         <xsd:element maxOccurs="unbounded" minOccurs="0" name="businessCategory" type="xsd:string">
                             <xsd:annotation>
                                 <xsd:appinfo>
@@ -1008,6 +998,15 @@
                                 </xsd:appinfo>
                             </xsd:annotation>
                         </xsd:element>
+                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="manager" type="xsd:string">
+                            <xsd:annotation>
+                                <xsd:appinfo>
+                                    <a:displayOrder>610</a:displayOrder>
+                                    <ra:nativeAttributeName>Manager</ra:nativeAttributeName>
+                                    <ra:frameworkAttributeName>Manager</ra:frameworkAttributeName>
+                                </xsd:appinfo>
+                            </xsd:annotation>
+                        </xsd:element>
                         <xsd:element minOccurs="0" name="entryUUID" type="xsd:string">
                             <xsd:annotation>
                                 <xsd:appinfo>
@@ -1052,20 +1051,75 @@
                             <code>
                                 import javax.naming.ldap.Rdn
                                 import javax.naming.ldap.LdapName
+
+                                var foundParents = false
+                                var parentsStack = new ArrayList()
                                 defaultDn = new LdapName('ou=Default,ou=AMI,dc=example,dc=com')
                                 dn = new LdapName('ou=AMI,dc=example,dc=com')
-                                parents = midpoint.getParentOrgs(focus)
-                                log.error("parents = {}", parents.toListString())
-                                for (int i = parents.size() -1 ; i &gt;= 0; i--) {
-                                    dn.add(new Rdn('ou', basic.stringify(parents.get(i).name)))
+                                log.error("========================== outbound to DN ===============================")
+                                parent = [focus]
+                                while (parent != null) {
+                                    parent = midpoint.getParentOrgs(parent[0])
+                                    log.error("parent = {}", parent.toListString())
+                                    if (parent != null &amp;&amp; parent.size() > 0) {
+                                        parentsStack.add(basic.stringify(parent.get(0).name));
+                                        foundParents = true
+                                    } else {
+                                        break
+                                    }
+
                                 }
-                                if(parents.size()==0 ){
-                                    log.error("No parents dn = {}", dn.toString())
+                                for (int i = parentsStack.size() -1 ; i &gt;= 0; i--) {
+                                    dn.add(new Rdn('ou', parentsStack[i]))
+                                }
+
+
+                                if (!foundParents) {
+                                    log.error("No parents dn = ( {} )", dn.toString())
                                     dn = defaultDn
-                                }
+                                } /*else if (midpoint.resolveEntitlement(dn.toString()==null)){
+                                    log.error("Not found ou dn = ( {} )", dn.toString())
+                                    dn = defaultDn;
+                                }*/
                                 dn.add(new Rdn('uid', basic.stringify(name)))
-                                log.error("dn = {}", dn)
+                                log.error("dn = ( {} )", dn)
                                 return dn.toString()
+                            </code>
+                        </script>
+                    </expression>
+                 </outbound>
+            </attribute>
+            <attribute>
+                <ref>ri:manager</ref>
+                <displayName>Manager</displayName>
+                <outbound>
+                    <trace>true</trace>
+                    <strength>strong</strength>
+                    <expression>
+                        <script>
+                            <code>
+                                log.error("==================================================== outbound to manager")
+                                def parents = midpoint.getParentOrgs(focus)
+                                log.error("parents = {}", parents.toListString())
+                                def managers = new ArrayList()
+                                if (parents?.size() > 0) {
+                                    ou = basic.stringify(parents[0].name)
+                                    log.error("ou = {}", ou)
+                                    managersObjects = midpoint.getManagersOfOrg(parents[0].getOid())
+                                    log.error("users-managers = {}", managersObjects.toListString())
+                                    managersObjects.stream().forEach() {
+                                        userObj ->
+                                            {
+                                                shadow = midpoint.getLinkedShadow(userObj, "d2c75340-48a4-49da-b9bc-e7c574fa63b8")
+                                                log.error("shadow name = {}", shadow.getName())
+                                                managers.add(shadow.getName())
+
+                                            }
+                                    }
+                                }
+                                log.error("managers = {}", managers.toListString())
+
+                                return managers
                             </code>
                         </script>
                     </expression>
