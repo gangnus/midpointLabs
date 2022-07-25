@@ -1,0 +1,11 @@
+<role xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="7b0b9fd6-96b9-4357-b6b0-0968019d9464">
+    <name>PolygonRole</name>
+    <description>Role for inducing attachment to the Polygon and creation of the appropriate data by TrainingConnector</description>
+    <displayName>Polygon Role</displayName>
+    <inducement>
+        <construction>
+            <resourceRef oid="a4fc4bdb-df95-4de6-a2c4-7577113c0632"/>
+            <kind>account</kind>
+        </construction>
+    </inducement>
+</role>

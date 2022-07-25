@@ -40,6 +40,57 @@
     </mapping>
     <mapping>
         <description>
+            This definition sets the given name from the full name
+        </description>
+        <strength>weak</strength>
+        <source>
+            <path>$user/fullName</path>
+        </source>
+        <expression>
+            <script>
+                <language>http://midpoint.evolveum.com/xml/ns/public/expression/language#Groovy</language>
+                <code>
+                    def full = basic.stringify(fullName)
+                    if (full==null) return ""
+                    if (full.trim()=="") return ""
+                    def names = full.split("[\\s+\\.]+")
+                    names[0]
+                </code>
+            </script>
+        </expression>
+        <target>
+            <path>givenName</path>
+        </target>
+        <evaluationPhase>afterAssignments</evaluationPhase>
+    </mapping>
+    <mapping>
+        <description>
+            This definition sets the family name from the full name
+        </description>
+        <strength>weak</strength>
+        <source>
+            <path>$user/fullName</path>
+        </source>
+        <expression>
+            <script>
+                <language>http://midpoint.evolveum.com/xml/ns/public/expression/language#Groovy</language>
+                <code>
+                    def full = basic.stringify(fullName)
+                    if (full==null) return ""
+                    if (full.trim()=="") return ""
+                    def names = full.split("[\\s+\\.]+")
+                    if(names.size() &lt; 2) return ""
+                    names[1]
+                </code>
+            </script>
+        </expression>
+        <target>
+            <path>familyName</path>
+        </target>
+        <evaluationPhase>afterAssignments</evaluationPhase>
+    </mapping>
+    <mapping>
+        <description>
             This specific definition sets an AMI nickname as a concatenation
             of three lettes from given name and surname.
         </description>
@@ -114,6 +165,24 @@
             <path>assignment</path>
         </target>
         <enabled>false</enabled>
+    </mapping>
+    <mapping>
+
+        <description>
+            Giving a PolygonRole role to the user
+        </description>
+
+        <strength>strong</strength>
+        <expression>
+            <assignmentTargetSearch>
+                <targetType>c:RoleType</targetType>
+                <oid>a4fc4bdb-df95-4de6-a2c4-7577113c0632</oid>
+            </assignmentTargetSearch>
+        </expression>
+        <target>
+            <path>assignment</path>
+        </target>
+        <enabled>true</enabled>
     </mapping>
     <mapping>
         <description>
