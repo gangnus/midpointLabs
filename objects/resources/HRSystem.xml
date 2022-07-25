@@ -246,7 +246,6 @@
                     </access>
                 </limitations>
                 <matchingRule>stringIgnoreCase</matchingRule>
-                <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
                 <fetchStrategy>implicit</fetchStrategy>
                 <outbound>
@@ -256,7 +255,7 @@
                     </source>
                 </outbound>
                 <inbound id="28">
-                    <authoritative>true</authoritative>
+
                     <exclusive>false</exclusive>
                     <strength>strong</strength>
                     <expression>
@@ -275,7 +274,6 @@
             <attribute id="20">
                 <ref>icfs:name</ref>
                 <displayName>Name</displayName>
-                <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
                 <outbound>
                     <trace>false</trace>
@@ -285,7 +283,7 @@
                 </outbound>
 
                 <inbound id="29">
-                    <authoritative>true</authoritative>
+
                     <exclusive>false</exclusive>
                     <strength>strong</strength>
                     <expression>
@@ -299,7 +297,6 @@
             <attribute>
                 <ref>icfs:uid</ref>
                 <displayName>Uid</displayName>
-                <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
                 <outbound>
                     <trace>false</trace>
@@ -310,7 +307,6 @@
             </attribute>
             <attribute id="22">
                 <ref>ri:firstname</ref>
-                <tolerant>true</tolerant>
                 <exclusiveStrong>false</exclusiveStrong>
                 <outbound>
                     <source>
@@ -318,7 +314,7 @@
                     </source>
                 </outbound>
                 <inbound id="24">
-                    <authoritative>true</authoritative>
+
                     <exclusive>false</exclusive>
                     <strength>normal</strength>
                     <expression>
@@ -339,7 +335,7 @@
                     </source>
                 </outbound>
                 <inbound id="25">
-                    <authoritative>true</authoritative>
+
                     <exclusive>false</exclusive>
                     <strength>strong</strength>
                     <expression>

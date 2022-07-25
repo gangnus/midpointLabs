@@ -32,8 +32,8 @@
                                 <xsd:appinfo>
                                     <a:displayName>ConnId UID</a:displayName>
                                     <a:displayOrder>10</a:displayOrder>
+                                    <a:access>create</a:access>
                                     <a:access>read</a:access>
-                                    <ra:frameworkAttributeName>__UID__</ra:frameworkAttributeName>
                                 </xsd:appinfo>
                             </xsd:annotation>
                         </xsd:element>
@@ -42,7 +42,6 @@
                                 <xsd:appinfo>
                                     <a:displayName>ConnId Name</a:displayName>
                                     <a:displayOrder>20</a:displayOrder>
-                                    <a:access>read</a:access>
                                     <ra:frameworkAttributeName>__NAME__</ra:frameworkAttributeName>
                                 </xsd:appinfo>
                             </xsd:annotation>
@@ -51,7 +50,7 @@
                             <xsd:annotation>
                                 <xsd:appinfo>
                                     <a:displayOrder>30</a:displayOrder>
-                                    <ra:frameworkAttributeName>lastname</ra:frameworkAttributeName>
+                                    <ra:frameworkAttributeName>fullname</ra:frameworkAttributeName>
                                 </xsd:appinfo>
                             </xsd:annotation>
                         </xsd:element>
@@ -108,6 +107,26 @@
                         <path>$user/name</path>
                     </target>
                 </inbound>
+                <matchingRule>stringIgnoreCase</matchingRule>
+            </attribute>
+            <attribute>
+                <ref>icfs:uid</ref>
+                <displayName>uid</displayName>
+                    <limitations>
+                        <access>
+                            <read>true</read>
+                            <add>true</add>
+                        </access>
+                    </limitations>
+                <outbound>
+                    <strength>strong</strength>
+
+                    <trace>true</trace>
+                    <source>
+                        <path>$user/name</path>
+                    </source>
+                </outbound>
+                <matchingRule>stringIgnoreCase</matchingRule>
             </attribute>
 
             <credentials>
@@ -117,14 +136,8 @@
                         <expression>
                             <asIs />
                         </expression>
-                        <target>
-                            <path>account/password</path>
-                        </target>
                     </outbound>
                     <inbound>
-                        <source>
-                            <path>account/password</path>
-                        </source>
                         <expression>
                             <asIs />
                         </expression>
@@ -169,7 +182,7 @@
                 <q:equal>
                     <q:path>name</q:path>
                     <expression>
-                        <path>$account/attributes/icfs:uid</path>
+                        <path>$account/attributes/icfs:name</path>
                     </expression>
                 </q:equal>
             </correlation>
