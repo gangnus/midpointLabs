@@ -61,7 +61,9 @@
         <target>
             <path>givenName</path>
         </target>
-        <evaluationPhase>afterAssignments</evaluationPhase>
+        <enabled>false</enabled>
+        <evaluationPhase>beforeAssignments</evaluationPhase>
+
     </mapping>
     <mapping>
         <description>
@@ -87,7 +89,8 @@
         <target>
             <path>familyName</path>
         </target>
-        <evaluationPhase>afterAssignments</evaluationPhase>
+        <enabled>false</enabled>
+        <evaluationPhase>beforeAssignments</evaluationPhase>
     </mapping>
     <mapping>
         <description>
@@ -182,7 +185,7 @@
         <target>
             <path>assignment</path>
         </target>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </mapping>
     <mapping>
         <description>
@@ -199,6 +202,6 @@
         <target>
             <path>assignment</path>
         </target>
-        <enabled>true</enabled>
+        <enabled>false</enabled>
     </mapping>
 </objectTemplate>

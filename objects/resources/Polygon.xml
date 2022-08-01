@@ -68,7 +68,7 @@
         </definition>
     </schema>
     <schemaHandling>
-        <objectType id="3">
+        <objectType>
             <displayName>Training Data</displayName>
             <default>true</default>
             <objectClass>ri:AccountObjectClass</objectClass>
@@ -109,25 +109,7 @@
                 </inbound>
                 <matchingRule>stringIgnoreCase</matchingRule>
             </attribute>
-            <attribute>
-                <ref>icfs:uid</ref>
-                <displayName>uid</displayName>
-                    <limitations>
-                        <access>
-                            <read>true</read>
-                            <add>true</add>
-                        </access>
-                    </limitations>
-                <outbound>
-                    <strength>strong</strength>
 
-                    <trace>true</trace>
-                    <source>
-                        <path>$user/name</path>
-                    </source>
-                </outbound>
-                <matchingRule>stringIgnoreCase</matchingRule>
-            </attribute>
 
             <credentials>
                 <password xsi:type="c:ResourcePasswordDefinitionType">
@@ -161,9 +143,11 @@
                     <cap:type>connector</cap:type>
                 </cap:host>
             </cap:script>
+            <cap:pagedSearch/>
             <cap:read>
                 <cap:returnDefaultAttributesOption>false</cap:returnDefaultAttributesOption>
             </cap:read>
+
             <cap:activation>
                 <cap:validFrom/>
                 <cap:validTo/>

@@ -1,0 +1,109 @@
+<role xmlns = "http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+      xmlns:c = "http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+      xmlns:icfs = "http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3"
+      xmlns:org = "http://midpoint.evolveum.com/xml/ns/public/common/org-3"
+      xmlns:q = "http://prism.evolveum.com/xml/ns/public/query-3"
+      xmlns:ri = "http://midpoint.evolveum.com/xml/ns/public/resource/instance-3"
+      xmlns:t = "http://prism.evolveum.com/xml/ns/public/types-3"
+      xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+      oid = "e5457dcb-a653-4768-b107-6074a4552d96">
+    <name>EmptyRoleWithWorkflow</name>
+
+    <description>Role with workflow, approval by a manager, a RoleApprover, and possibly a SodApprover</description>
+
+
+    <displayName>Role with workflow only</displayName>
+
+    <inducement>
+
+        <policyRule>
+            <name>
+                Unconditional approvals
+            </name>
+            <policyConstraints>
+                <assignment/>
+            </policyConstraints>
+            <policyActions>
+                <approval>
+                    <compositionStrategy>
+                        <order>10</order>
+                    </compositionStrategy>
+                    <approvalSchema>
+                        <stage>
+                            <name>Line managers</name>
+                            <approverExpression>
+                                <script>
+                                    <code>midpoint.getManagersOidsExceptUser(object)</code>
+                                </script>
+                            </approverExpression>
+                            <evaluationStrategy>firstDecides</evaluationStrategy>
+                            <outcomeIfNoApprovers>reject</outcomeIfNoApprovers>
+                        </stage>
+                    </approvalSchema>
+                </approval>
+                <approval>
+                    <compositionStrategy>
+                        <order>20</order>
+                    </compositionStrategy>
+                    <approvalSchema>
+                        <stage>
+                            <name>RoleApprover</name>
+                            <approverRelation>approver</approverRelation>
+                            <evaluationStrategy>firstDecides</evaluationStrategy>
+                            <outcomeIfNoApprovers>reject</outcomeIfNoApprovers>
+                        </stage>
+                    </approvalSchema>
+                </approval>
+            </policyActions>
+        </policyRule>
+    </inducement>
+    <inducement>
+        <policyRule>
+
+            <name>
+                Conditional approvals (SoD=true)
+            </name>
+
+            <policyConstraints>
+                <assignment/>
+            </policyConstraints>
+
+            <policyActions>
+                <approval>
+
+                    <condition>
+                        <trace>true</trace>
+                        <script>
+                            <code>
+                                import javax.xml.namespace.QName
+                                log.error("----------------- all groovy variables ------------------------")
+                                this.binding.variables.each {k,v -> log.error("$k = $v")}
+
+                                def sod = basic.getExtensionReferenceValue(target,new QName("SoD"))
+                                log.error("sod=" + sod.toString());
+                                sod != null &amp;&amp; sod.toString() == "true"
+
+                            </code>
+                        </script>
+                    </condition>
+                    <compositionStrategy>
+                        <order>30</order>
+                    </compositionStrategy>
+
+
+                    <approvalSchema>
+                        <stage>
+                            <name>Sod Approver</name>
+                            <approverRef oid = "52b77e79-e652-48ac-896a-b05e0fc8671d"
+                                         type = "RoleType"/>   <!-- approve by administrator -->
+
+                            <evaluationStrategy>firstDecides</evaluationStrategy>
+                            <outcomeIfNoApprovers>reject</outcomeIfNoApprovers>
+                        </stage>
+                    </approvalSchema>
+                </approval>
+            </policyActions>
+        </policyRule>
+    </inducement>
+
+</role>

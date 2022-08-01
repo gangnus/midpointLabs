@@ -1,0 +1,27 @@
+<role xmlns = "http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+      xmlns:c = "http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+      xmlns:icfs = "http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3"
+      xmlns:org = "http://midpoint.evolveum.com/xml/ns/public/common/org-3"
+      xmlns:q = "http://prism.evolveum.com/xml/ns/public/query-3"
+      xmlns:ri = "http://midpoint.evolveum.com/xml/ns/public/resource/instance-3"
+      xmlns:t = "http://prism.evolveum.com/xml/ns/public/types-3"
+      xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:exmpl = "http://example.com/xml/ns/midpoint/schema"
+      oid="2ae17cb5-a50f-4055-a6b4-3c51389ae135"
+      >
+    <name>RoleWorkflowMinusSod</name>
+
+    <description>Role with workflow, approval by a manager and a RoleApprover. No SodApprover is needed</description>
+    <extension>
+        <exmpl:SoD>false</exmpl:SoD>
+    </extension>
+    <assignment>
+        <targetRef oid = "e5457dcb-a653-4768-b107-6074a4552d96" relation = "org:default" type = "c:RoleType"/>
+    </assignment>
+    <assignment>
+        <targetRef oid="375d92af-1dc7-4c1c-87f1-41594887de65" relation="org:approver" type="c:RoleType"/>
+    </assignment>
+    <displayName>Role with workflow without SodApprover</displayName>
+
+
+</role>

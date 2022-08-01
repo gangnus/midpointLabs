@@ -1,0 +1,40 @@
+<role xmlns = "http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+      xmlns:c = "http://midpoint.evolveum.com/xml/ns/public/common/common-3"
+      xmlns:icfs = "http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3"
+      xmlns:org = "http://midpoint.evolveum.com/xml/ns/public/common/org-3"
+      xmlns:q = "http://prism.evolveum.com/xml/ns/public/query-3"
+      xmlns:ri = "http://midpoint.evolveum.com/xml/ns/public/resource/instance-3"
+      xmlns:t = "http://prism.evolveum.com/xml/ns/public/types-3"
+      xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" oid = "5f4ecf0e-78fd-4cc3-bb80-1d98c0de7fb4">
+    <name>RoleSetter</name>
+    <description>Role that authorizes to see users and assign roles</description>
+
+    <authorization> <!-- GUI authorization -->
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-3#home</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-3#dashboard</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#userDetails</action>
+
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminAssignMember</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminAddMember</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminAssign</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminAddOrgMember</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminAssignOrgMember</action>
+
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminUnassign</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminUnassignMember</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminUnassignOrgMember</action>
+    </authorization>
+    <authorization> <!-- Request&Execution authorization -->
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#assign</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#add</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#modify</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#unassign</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#unassign</action>
+        <object>
+            <type>UserType</type>
+        </object>
+        <target>
+            <type>RoleType</type>
+        </target>
+    </authorization>
+</role>

@@ -46,5 +46,27 @@
             </xsd:element>
         </xsd:sequence>
     </xsd:complexType>
+    <xsd:complexType name="RoleExtensionType">
+        <xsd:annotation>
+            <xsd:appinfo>
+                <a:extension ref="c:RoleType"/>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="SoD" type="xsd:string" minOccurs="0" a:maxOccurs="1">
+                <xsd:annotation>
+                    <xsd:appinfo>
+                        <a:displayName>SoD</a:displayName>
+                        <a:help>
+                            Segregations Of Duties is demanded
+                        </a:help>
+                        <a:indexed>false</a:indexed>
+                        <a:displayOrder>300</a:displayOrder>
+
+                    </xsd:appinfo>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
 
 </xsd:schema>

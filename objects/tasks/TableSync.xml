@@ -23,7 +23,7 @@
     <iteration>0</iteration>
     <iterationToken/>
     <archetypeRef oid="00000000-0000-0000-0000-000000000504" relation="org:default" type="c:ArchetypeType"/>
-    <roleMembershipRef oid="00000000-0000-0000-0000-000000000504" relation="org:default" type="c:ArchetypeType"/>
+    <assignment><targetref oid="00000000-0000-0000-0000-000000000504" relation="org:default" type="c:ArchetypeType"/>
     <taskIdentifier>1656265582742-0-1</taskIdentifier>
     <ownerRef oid="00000000-0000-0000-0000-000000000002" relation="org:default" type="c:UserType"/>
     <executionState>suspended</executionState>

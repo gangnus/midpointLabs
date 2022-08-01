@@ -1,0 +1,8 @@
+<role xmlns="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:c="http://midpoint.evolveum.com/xml/ns/public/common/common-3" xmlns:icfs="http://midpoint.evolveum.com/xml/ns/public/connector/icf-1/resource-schema-3" xmlns:org="http://midpoint.evolveum.com/xml/ns/public/common/org-3" xmlns:q="http://prism.evolveum.com/xml/ns/public/query-3" xmlns:ri="http://midpoint.evolveum.com/xml/ns/public/resource/instance-3" xmlns:t="http://prism.evolveum.com/xml/ns/public/types-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oid="52b77e79-e652-48ac-896a-b05e0fc8671d" >
+    <name>RoleSodApprover</name>
+    <assignment>
+        <targetRef oid="5f4ecf0e-78fd-4cc3-bb80-1d98c0de7fb4" relation="org:default" type="c:RoleType">
+            <!-- RoleApprover -->
+        </targetRef>
+    </assignment>
+</role>
