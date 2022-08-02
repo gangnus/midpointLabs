@@ -18,10 +18,12 @@
 
         <policyRule>
             <name>
-                Unconditional approvals
+                Approvals by Managers, Approvers (and SodApprovers)
             </name>
             <policyConstraints>
-                <assignment/>
+                <assignment>
+                    <relation>default</relation>
+                </assignment>
             </policyConstraints>
             <policyActions>
                 <approval>
@@ -54,37 +56,26 @@
                         </stage>
                     </approvalSchema>
                 </approval>
-            </policyActions>
-        </policyRule>
-    </inducement>
-    <inducement>
-        <policyRule>
-
-            <name>
-                Conditional approvals (SoD=true)
-            </name>
-
-            <policyConstraints>
-                <assignment/>
-            </policyConstraints>
-
-            <policyActions>
                 <approval>
-
                     <condition>
                         <trace>true</trace>
-                        <script>
-                            <code>
-                                import javax.xml.namespace.QName
-                                log.error("----------------- all groovy variables ------------------------")
-                                this.binding.variables.each {k,v -> log.error("$k = $v")}
 
-                                def sod = basic.getExtensionReferenceValue(target,new QName("SoD"))
-                                log.error("sod=" + sod.toString());
-                                sod != null &amp;&amp; sod.toString() == "true"
+                            <script>
+                                <code>
+                                    import javax.xml.namespace.QName
+                                    log.error("----------------- all groovy variables ------------------------")
+                                    //List logList = new ArrayList()
+                                    //this.binding.variables.each {k,v ->logList.add("$k = $v")}
+                                    //throw new Exception(logList.toString())
 
-                            </code>
-                        </script>
+                                    def sod = basic.getExtensionPropertyValue(target, new QName("SoD"))
+
+                                    log.error("sod=" + sod.toString());
+                                    sod != null &amp;&amp; sod.toString() == "true"
+
+                                </code>
+                            </script>
+
                     </condition>
                     <compositionStrategy>
                         <order>30</order>
@@ -93,7 +84,9 @@
 
                     <approvalSchema>
                         <stage>
+
                             <name>Sod Approver</name>
+
                             <approverRef oid = "52b77e79-e652-48ac-896a-b05e0fc8671d"
                                          type = "RoleType"/>   <!-- approve by administrator -->
 
@@ -101,9 +94,11 @@
                             <outcomeIfNoApprovers>reject</outcomeIfNoApprovers>
                         </stage>
                     </approvalSchema>
+
                 </approval>
             </policyActions>
         </policyRule>
     </inducement>
+
 
 </role>

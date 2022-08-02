@@ -10,8 +10,12 @@
     <description>Role that authorizes to see users and assign roles</description>
 
     <authorization> <!-- GUI authorization -->
+        <decision>allow</decision>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-3#home</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#all</action>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-3#dashboard</action>
+
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-actuator-3#all</action>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#userDetails</action>
 
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminAssignMember</action>
@@ -23,18 +27,47 @@
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminUnassign</action>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminUnassignMember</action>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#adminUnassignOrgMember</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#selfAll</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#roleDetails</action>
+
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#allWorkItems</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#cases</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-ui-3#casesView</action>
+
+
+        <object>
+            <type>UserType</type>
+
+        </object>
+        <object>
+            <type>RoleType</type>
+
+        </object>
+        <object>
+            <type>CaseType</type>
+
+        </object>
     </authorization>
     <authorization> <!-- Request&Execution authorization -->
+        <decision>allow</decision>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-3#all</action>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#assign</action>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#add</action>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#modify</action>
         <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#unassign</action>
-        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#unassign</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#read</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#get</action>
+        <action>http://midpoint.evolveum.com/xml/ns/public/security/authorization-model-3#getExtensionSchema</action>
         <object>
             <type>UserType</type>
+
         </object>
-        <target>
+        <object>
             <type>RoleType</type>
-        </target>
+
+        </object>
+        <object>
+            <type>CaseType</type>
+        </object>
     </authorization>
 </role>
